@@ -116,10 +116,10 @@ body {
 
 /* 아이콘 이미지 */
 .person-icon {
-  background-image: url("icons/personicon.png");
+  background-image: url("../static/icons/personicon.png");
 }
 .introduction-icon {
-  background-image: url("icons/introduction.png");
+  background-image: url("../static/icons/introduction.png");
 }
 .javascript {
   background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg");
