@@ -14,7 +14,12 @@ const projects = [
     duration: "23.8.27~23.11.18",
     summary:
       "세차 예약 서비스 뽀득뽀득입니다. 결제 화면, 지도 화면, 예약관리 화면을 구현하였고, 개발 문서를 정리하였습니다.",
-    features: ["세차 예약 기능", "세차장 검색 시스템", "리뷰 시스템"],
+    features: [
+      "세차 예약 기능",
+      "세차장 검색 시스템",
+      "리뷰 시스템",
+      "결제 기능",
+    ],
     link: "https://github.com/Step3-kakao-tech-campus/Team10_FE_USER?tab=readme-ov-file",
     technologies: ["javascript", "react", "tailwindcss", "vite"],
   },
@@ -29,56 +34,56 @@ const projects = [
   },
   {
     name: "하츠네미쿠 프로그래밍 컨테스트 출품작",
-    duration: "23.6.10~23.7.09",
+    duration: "24.6.10~24.7.09",
     summary:
       "작곡한 노래를 좀 더 동적으로 즐길 수 있도록 만든 웹 앱입니다. 컴퓨터 바탕화면의 UI를 모티브로 하였습니다.",
     features: [
-      "노래 선택 가능",
+      "노래 선택 기능",
       "가사를 팝업창으로 보여줌",
-      "코드와 음량 조절 기능",
-      "다양한 기믹",
+      "팝업창 제거 개수에 따른 다양한 기믹",
     ],
     link: "https://jolly-duckanoo-52ac00.netlify.app/",
-    technologies: ["javascript", "react", "tailwindcss", "vite"],
+    technologies: ["javascript", "tailwindcss"],
   },
   {
     name: "입력 언어의 발음을 음성합성 소프트웨어 발음기호로 바꿔주는 서비스",
-    duration: "23.8.27~23.11.18",
+    duration: "24.12.20~25.03.15",
     summary:
       "음성합성소프트웨어의 라이브러리에서 한글을 지원하지 않아, IPA 기호를 바탕으로 한글을 타 언어로 표현하는 서비스를 개발하였습니다.",
-    features: ["세차 예약 기능", "세차장 검색 시스템", "리뷰 시스템템"],
+    features: [
+      "chatgpt api 이용",
+      "글자 제한, 한도 제한",
+      "최근 검색이력 저장",
+    ],
     link: "https://lang2synthv.vercel.app/",
-    technologies: ["javascript", "react", "tailwindcss", "vite"],
-  },
-];
-
-const modals = [
-  {
-    readme: "나중에 시연 영상 링크 첨부하기",
+    technologies: ["typescript", "tailwindcss", "python"],
   },
   {
-    readme: "나중에 시연 영상 링크 첨부하기",
-  },
-  {
-    readme: "나중에 시연 영상 링크 첨부하기",
-  },
-  {
-    readme: "나중에 시연 영상 링크 첨부하기",
+    name: "포트폴리오 웹사이트",
+    duration: "24.12.20~25.03.15",
+    summary:
+      "ThreeJS 라이브러리를 사용하여 제작한 포트폴리오 웹사이트입니다. 각 프로젝트에 대한 설명과 기술스택을 확인할 수 있습니다.",
+    features: [
+      "blender을 이용한 3d 모델링",
+      "baked texture를 이용한 빠른 렌더링",
+      "첫 화면에서 번호를 누르면 각 목차로 이동",
+    ],
+    link: "https://lang2synthv.vercel.app/",
+    technologies: ["javascript", "blender", "three"],
   },
 ];
 
 const renderProjects = () => {
   const projectsContainer = document.getElementById("projects");
-  projectsContainer.innerHTML = projects
-    .map(
-      (project, index) => `
+  projectsContainer.innerHTML = `
+    <div class="subtitle">Projects</div>
+    ${projects
+      .map(
+        (project, index) => `
       <div class="project">
         <div class="subtitle">${project.name}</div>
         <div class="duration">${project.duration}</div>
         <div class="summarize">${project.summary}</div>
-        ${project.features
-          .map((feature) => `<div class="content">- ${feature}</div>`)
-          .join("")}
         <a href="${project.link}" target="_blank" class="link">Project Link</a>
         <div class="skills">Technologies Used</div>
         <div class="icons">
@@ -86,25 +91,11 @@ const renderProjects = () => {
             .map((tech) => `<div class="icon ${tech}"></div>`)
             .join("")}
         </div>
-        <!-- 모달 열기 버튼 -->
-        <button class="modal-button" data-modal="modal-${
-          index + 1
-        }">Open Modal</button>
-      </div>
-      <!-- 동적으로 생성되는 모달 -->
-      <div class="modal" id="modal-${index + 1}">
-        <div class="modal-content">
-          <span class="close-button" data-modal="modal-${
-            index + 1
-          }">&times;</span>
-          <div class="modal-body">
-            <p>${modals[index].readme}</p>
-          </div>
-        </div>
       </div>
     `
-    )
-    .join("");
+      )
+      .join("")}
+  `;
 };
 
 renderProjects();
@@ -158,7 +149,7 @@ const debugObject = {};
 const gui = new GUI({
   width: 400,
 });
-gui.hide();
+
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
@@ -370,7 +361,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-debugObject.clearColor = "#000000";
+debugObject.clearColor = "#76a279";
 renderer.setClearColor(debugObject.clearColor);
 gui.addColor(debugObject, "clearColor").onChange(() => {
   renderer.setClearColor(debugObject.clearColor);
@@ -405,8 +396,8 @@ const tick = () => {
 
   // Animate camera
   camera.position.x = 3 * Math.sin(-scrollY / sizes.height) + -2;
-  camera.position.y = 3 * Math.cos(scrollY / sizes.height) + 3;
-  camera.position.z = 3 * Math.sin(scrollY / sizes.height) + 5;
+  camera.position.y = 0.5 * Math.cos(scrollY / sizes.height) + 3;
+  camera.position.z = 0.5 * Math.sin(scrollY / sizes.height) + 5;
 
   const parallaxX = cursor.x * 0.5;
   const parallaxY = -cursor.y * 0.5;
