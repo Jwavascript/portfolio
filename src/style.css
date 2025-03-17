@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1a1a1a;
+  --text-color: #f1f1f1;
+  --highlight-color: #00bcd4;
+}
+
+html,
+body {
+  font-family: "Arial", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.pagetitle {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 4rem;
+  color: #ffffff;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0; /* 캔버스를 뒤로 이동 */
+  width: 100vw; /* 캔버스 크기 조정 */
+  height: 100vh;
+}
+.titlesection {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 5%;
+  position: relative;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+.section {
+  display: flex;
+  z-index: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 5%;
+  position: relative;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.subtitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.content {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.icons {
+  display: flex;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 15px;
+}
+
+.person-icon {
+  background-image: url("icons/personicon.png");
+}
+.introduction-icon {
+  background-image: url("icons/introduction.png");
+}
+.javascript {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg");
+}
+.typescript {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg");
+}
+.python {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg");
+}
+.react {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg");
+}
+.html5 {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg");
+}
+.tailwindcss {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg");
+}
+.three {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original-wordmark.svg");
+}
+.blender {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/blender/blender-original.svg");
+}
+.unity {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg");
+}
+.figma {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg");
+}
+.git {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg");
+}
+
+.point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.5s ease-in-out;
+}
+
+.point.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.point:hover .text {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.point .label {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #00000077;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.point .text {
+  position: absolute;
+  top: 40px;
+  left: -50%;
+  width: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  background: #00000077;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.link {
+  color: var(--highlight-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+  margin-right: 10px;
+}
+
+.link:hover {
+  color: #ff4081;
+}
+
+.modal-button {
+  background: #8b8b8b;
+  margin-top: 30px;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.modal-button:hover {
+  background: #555;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 80vh;
+  background-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  color: #000;
+  cursor: pointer;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
