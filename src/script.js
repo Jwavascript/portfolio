@@ -68,7 +68,7 @@ const projects = [
       "baked texture를 이용한 빠른 렌더링",
       "첫 화면에서 번호를 누르면 각 목차로 이동",
     ],
-    link: "https://lang2synthv.vercel.app/",
+    link: "https://portfolio-nine-ashy-20.vercel.app/",
     technologies: ["javascript", "blender", "three"],
   },
 ];
